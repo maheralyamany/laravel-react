@@ -110,8 +110,8 @@ export default function Login({ status, canResetPassword, token, redirectTo }: L
 	};
 
 	return (
-		<AuthLayout title={t('auth.login.title')} description="">
-			<Head title="Log in" />
+		<AuthLayout title={t('auth.login.title')}  description="">
+
 
 			<div className="mx-auto flex w-full max-w-5xl flex-col items-stretch justify-center gap-8 md:flex-row">
 				{/* Left: Log in with your account */}

@@ -3,13 +3,14 @@ import { type BreadcrumbItem } from '@/types';
 import { type ReactNode } from 'react';
 import { Toaster } from '@/components/ui/sonner';
 import { useFlashMessages } from '@/hooks/use-flash-messages';
-
+import { initializeAppLocale } from '@/hooks/use-language';
 interface AppLayoutProps {
 	children: ReactNode;
 	breadcrumbs?: BreadcrumbItem[];
 }
 
 const AppLayout = ({ children, breadcrumbs, ...props }: AppLayoutProps) => {
+    initializeAppLocale();
 	useFlashMessages();
 
 	return (

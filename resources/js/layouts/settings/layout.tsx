@@ -26,6 +26,11 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
 			href: '/settings/appearance',
 			icon: null,
 		},
+		{
+			title: t('settings.locale.title'),
+			href: '/settings/language',
+			icon: null,
+		},
 	];
 
 	// When server-side rendering, we only render the layout on the client...
@@ -62,7 +67,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
 
 				<Separator className="my-6 md:hidden" />
 
-				<div className="flex-1 md:max-w-2xl">
+				<div className="flex-1 md:max-w-2xl bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 shadow-sm p-4 rounded-full rounded-lg">
 					<section className="max-w-xl space-y-12">{children}</section>
 				</div>
 			</div>

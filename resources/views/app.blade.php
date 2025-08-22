@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 ?>
 <!DOCTYPE html>
-<html lang="{{ $appLocale=app()->getLocale() }}" dir="{{ $pageDir=in_array(app()->getLocale(), ['ar', 'he', 'fa', 'ur']) ? 'rtl' : 'ltr' }}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+<html lang="{{ $language= getCurrentLocale() }}" dir="{{ $pageDir=getPageDirection($language)}}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
+   
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
-             window.appLocale = "{{ $appLocale }}";
-             window.pageDir = "{{ $pageDir }}";
+
             (function() {
                 const appearance = '{{ $appearance ?? "system" }}';
 
@@ -55,7 +55,7 @@ declare(strict_types=1);
         <link rel="manifest" href="{{ asset('images/site.webmanifest') }}">
         <meta name="theme-color" content="#ffffff">
     </head>
-    <body class="font-sans antialiased dir-rtl:text-right dir-ltr:text-left {{$pageDir}}" dir="{{$pageDir}}">
+    <body class="font-sans antialiased dir-{{$pageDir}} dir-rtl:text-right dir-ltr:text-left  {{$pageDir}}" dir="{{$pageDir}}">
         @inertia
         <x-laravel-cookie-guard></x-laravel-cookie-guard>
     </body>

@@ -9,8 +9,10 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
+use Illuminate\Support\Facades\View;
 
-class HandleInertiaRequests extends Middleware {
+class HandleInertiaRequests extends Middleware
+{
     /**
      * The root template that's loaded on the first page visit.
      *
@@ -25,7 +27,8 @@ class HandleInertiaRequests extends Middleware {
      *
      * @see https://inertiajs.com/asset-versioning
      */
-    public function version(Request $request): ?string {
+    public function version(Request $request): ?string
+    {
         return parent::version($request);
     }
 
@@ -36,27 +39,33 @@ class HandleInertiaRequests extends Middleware {
      *
      * @return array<string, mixed>
      */
-    public function share(Request $request): array {
+    public function share(Request $request): array
+    {
+        $appLocale = getCurrentLocale();
+        View::share('appearance', $request->cookie('appearance') ?? 'system');
+
+
+
         [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
 
         return [
             ...parent::share($request),
             'appName' => config('app.name'),
-            'locale' => app()->getLocale(),
-            'pageDir' =>in_array(app()->getLocale(), ['ar','he','fa','ur']) ? 'rtl' : 'ltr',
+            'locale' => $appLocale,
+            'pageDir' => getPageDirection($appLocale),
             'quote' => ['message' => trim($message ?? ''), 'author' => trim($author ?? '')],
-            'translations' => fn (): array => [
-                'auth' => trans('auth'),
-                'pagination' => trans('pagination'),
-                'passwords' => trans('passwords'),
-                'users' => trans('users'),
-                'roles' => trans('roles'),
-                'validation' => trans('validation'),
-                'common' => trans('common'),
-                'dashboard' => trans('dashboard'),
-                'client-applications' => trans('client-applications'),
-                'navbar' => trans('navbar'),
-                'settings' => trans('settings'),
+            'translations' => fn(): array => [
+                'auth' => trans('auth', locale: $appLocale),
+                'pagination' => trans('pagination', locale: $appLocale),
+                'passwords' => trans('passwords', locale: $appLocale),
+                'users' => trans('users', locale: $appLocale),
+                'roles' => trans('roles', locale: $appLocale),
+                'validation' => trans('validation', locale: $appLocale),
+                'common' => trans('common', locale: $appLocale),
+                'dashboard' => trans('dashboard', locale: $appLocale),
+                'client-applications' => trans('client-applications', locale: $appLocale),
+                'navbar' => trans('navbar', locale: $appLocale),
+                'settings' => trans('settings', locale: $appLocale),
                 // add other translation files as needed
             ],
             'auth' => [
@@ -68,14 +77,14 @@ class HandleInertiaRequests extends Middleware {
                     'updated_at' => $request->user()->updated_at,
                     'deleted_at' => $request->user()->deleted_at,
                     'can' => collect(PermissionsEnum::cases())
-                        ->mapWithKeys(fn (PermissionsEnum $permissionsEnum) => [
+                        ->mapWithKeys(fn(PermissionsEnum $permissionsEnum) => [
                             str_replace(' ', '_', $permissionsEnum->value) => $request->user()->can($permissionsEnum->value),
                             str_replace('-', '_', $permissionsEnum->value) => $request->user()->can($permissionsEnum->value),
                         ])
                         ->all(),
                 ] : null,
             ],
-            'ziggy' => fn (): array => [
+            'ziggy' => fn(): array => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],

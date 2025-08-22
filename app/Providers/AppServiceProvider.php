@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 
-class AppServiceProvider extends ServiceProvider {
+class AppServiceProvider extends ServiceProvider
+{
     /**
      * @var array<class-string, class-string>
      */
@@ -31,17 +33,19 @@ class AppServiceProvider extends ServiceProvider {
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void {
-// مشاركة بيانات عامة لكل صفحات Inertia
+    public function boot(): void
+    {
+        // مشاركة بيانات عامة لكل صفحات Inertia
         Inertia::share([
             'pageDir' => function () {
                 // حدد اتجاه الصفحة بناءً على اللغة الحالية
                 $locale = app()->getLocale();
-                return in_array($locale, ['ar','he','fa','ur']) ? 'rtl' : 'ltr';
+                return in_array($locale, ['ar', 'he', 'fa', 'ur']) ? 'rtl' : 'ltr';
             },
 
         ]);
 
+        View::composer('*', \App\Http\ViewComposers\BaseComposer::class);
         Vite::prefetch(concurrency: 3);
 
         $this->configureSecureUrls();
@@ -49,7 +53,7 @@ class AppServiceProvider extends ServiceProvider {
         // Implicitly grant "Super Admin" role all permissions
         // This works in the app by using gate-related functions like auth()->user->can() and @can()
         // NOSONAR
-        Gate::before(fn ($user, $ability) => $user->hasRole(RolesEnum::ADMINISTRATOR) ? true : null);
+        Gate::before(fn($user, $ability) => $user->hasRole(RolesEnum::ADMINISTRATOR) ? true : null);
 
 
 
@@ -99,10 +103,11 @@ class AppServiceProvider extends ServiceProvider {
          */
         Date::use(CarbonImmutable::class);
 
-        RateLimiter::for('api', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
+        RateLimiter::for('api', fn(Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
     }
 
-    protected function configureSecureUrls(): void {
+    protected function configureSecureUrls(): void
+    {
         // Determine if HTTPS should be enforced
         $enforceHttps = $this->app->environment(['production', 'staging'])
             && ! $this->app->runningUnitTests();

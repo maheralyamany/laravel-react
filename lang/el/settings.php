@@ -9,6 +9,16 @@ return [
         'title' => 'Ρυθμίσεις εμφάνισης πίνακα ελέγχου',
         'description' => 'Ενημερώστε τις ρυθμίσεις εμφάνισης του πίνακα ελέγχου του λογαριασμού σας',
     ],
+    'locale' => [
+        'title' =>  'Dashboard language settings',
+        'description' => "Update your account's dashboard language settings",
+        'labels' => [
+            'lang' => 'language',
+        ],
+         'placeholders' => [
+            'select_lang' => 'Select language',
+        ],
+    ],
     'password' => [
         'title' => 'Ρυθμίσεις κωδικού πρόσβασης',
         'description' => 'Βεβαιωθείτε ότι ο λογαριασμός σας χρησιμοποιεί έναν μεγάλο, τυχαίο κωδικό πρόσβασης για ασφάλεια',

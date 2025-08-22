@@ -9,6 +9,16 @@ return [
         'title' => 'Dashboard appearance settings',
         'description' => "Update your account's dashboard appearance settings",
     ],
+    'locale' => [
+        'title' =>  'Dashboard language settings',
+        'description' => "Update your account's dashboard language settings",
+        'labels' => [
+            'lang' => 'language',
+        ],
+         'placeholders' => [
+            'select_lang' => 'Select language',
+        ],
+    ],
     'password' => [
         'title' => 'Password settings',
         'description' => 'Ensure your account is using a long, random password to stay secure',

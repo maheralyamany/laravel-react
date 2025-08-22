@@ -1,4 +1,5 @@
 import '../scss/app.scss';
+import '../css/fonts.css';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
@@ -15,6 +16,7 @@ createInertiaApp({
 		const root = createRoot(el);
 
 		root.render(<App {...props} />);
+
 		delete el.dataset.page;
 	},
 	progress: {
@@ -23,4 +25,5 @@ createInertiaApp({
 }).catch((err) => console.error(err));
 
 // This will set light / dark mode on load...
+
 initializeTheme();

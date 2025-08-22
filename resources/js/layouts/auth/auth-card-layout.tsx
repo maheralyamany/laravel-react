@@ -27,12 +27,12 @@ export default function AuthCardLayout({
 				</Link>
 
 				<div className="flex flex-col gap-6">
-					<Card className="rounded-xl">
-						<CardHeader className="px-10 pb-0 pt-8 text-center">
+					<Card className="rounded-xl py-2">
+						<CardHeader className="px-10 pb-0 pt-1 text-center">
 							<CardTitle className="text-2xl">{title}</CardTitle>
 							<CardDescription>{description}</CardDescription>
 						</CardHeader>
-						<CardContent className="px-4 py-4 md:px-10 md:py-8">{children}</CardContent>
+						<CardContent className="px-4 py-2 md:px-10 md:py-2">{children}</CardContent>
 					</Card>
 				</div>
 			</div>

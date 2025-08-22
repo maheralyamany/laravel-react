@@ -17,6 +17,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
+
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
@@ -56,6 +57,7 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
 	const page = usePage<SharedData>();
 	const { auth } = page.props;
 	const getInitials = useInitials();
+
 	const { t } = useTranslations();
 	return (
 		<>

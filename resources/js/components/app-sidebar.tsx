@@ -10,6 +10,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
+import { getPageDirection } from '@/hooks/use-language';
 import { type NavItem } from '@/types';
 import { usePage } from '@inertiajs/react';
 import { LayoutGrid, Users, UserPlus } from 'lucide-react';
@@ -18,7 +19,7 @@ import { Auth } from '@/types';
 import { useTranslations } from '@/hooks/use-translations';
 export function AppSidebar() {
     const { auth } = usePage().props as unknown as { auth: Auth };
-    const { pageDir } = usePage().props as unknown as { pageDir: string };
+    const pageDir = getPageDirection();
 
     const { t } = useTranslations();
 
