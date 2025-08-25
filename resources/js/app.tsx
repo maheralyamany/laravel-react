@@ -1,5 +1,6 @@
 import '../scss/app.scss';
 import '../css/fonts.css';
+import '../css/table.css';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
@@ -22,6 +23,7 @@ createInertiaApp({
 	progress: {
 		color: '#4B5563',
 	},
+
 }).catch((err) => console.error(err));
 
 // This will set light / dark mode on load...

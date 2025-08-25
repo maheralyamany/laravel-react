@@ -25,6 +25,7 @@ class UserController extends Controller {
      * Display a listing of users.
      */
     public function index(Request $request): Response {
+//
         $this->authorize('viewAny', User::class);
 
         $search = $request->query('search');
@@ -80,6 +81,7 @@ class UserController extends Controller {
      * Show the form for editing the specified user.
      */
     public function edit(User $user): Response {
+
         $this->authorize('update', $user);
 
         return Inertia::render('users/edit', [

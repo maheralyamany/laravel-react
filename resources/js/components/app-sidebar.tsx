@@ -53,8 +53,8 @@ export function AppSidebar() {
     const footerNavItems: NavItem[] = [];
     const side= pageDir==='rtl'?'right':'left';
     return (
-        <Sidebar collapsible="icon" side={side} variant="inset">
-            <SidebarHeader>
+        <Sidebar collapsible="icon"  side={side} variant="inset">
+            <SidebarHeader className='bg-background'>
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
@@ -64,11 +64,11 @@ export function AppSidebar() {
                 </SidebarMenu>
             </SidebarHeader>
 
-            <SidebarContent>
+            <SidebarContent className='bg-background'>
                 <NavMain items={mainNavItems} />
             </SidebarContent>
 
-            <SidebarFooter>
+            <SidebarFooter className='bg-background'>
                 <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>

@@ -1,8 +1,6 @@
-
 import { usePage } from '@inertiajs/react';
 export function initializeAppLocale() {
     const { locale, pageDir } = usePage().props as unknown as { locale: string, pageDir: string };
-    console.log({ locale: locale, pageDir: pageDir })
     document.querySelector("html")?.setAttribute("lang", locale);
     document.querySelector("html")?.setAttribute("dir", pageDir);
     var $body = document.querySelector("body");
@@ -24,11 +22,9 @@ export function initializeAppLocale() {
 }
 export function getAppLocale() {
     const { locale } = usePage().props as unknown as { locale: string };
-
     return locale;
 }
 export function getPageDirection() {
     const { pageDir } = usePage().props as unknown as { pageDir: string };
-
     return pageDir;
 }

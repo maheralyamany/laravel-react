@@ -1,5 +1,4 @@
-﻿
-@font-face {
+﻿@font-face {
     font-family: mothanna;
     src: url(./fonts/Mothanna.ttf);
     font-weight: normal;
@@ -9,13 +8,21 @@
 
 @font-face {
     font-family: light;
-   /* src: url(../fonts/light.eot);
-    src: url(../fonts/light.eot?#iefix) format("embedded-opentype"),url(../fonts/light.woff2) format("woff2"),url(../fonts/light.woff) format("woff"),url(../fonts/light.ttf) format("truetype");*/
-   src:url(./fonts/Hacen_Algeria.ttf);
+     src: url(./fonts/light.eot);
+    src: url(./fonts/light.eot?#iefix) format("embedded-opentype"),url(./fonts/light.woff2) format("woff2"),url(./fonts/light.woff) format("woff"),url(./fonts/light.ttf) format("truetype");
+
     font-display: fallback;
 }
-body[dir="rtl"] {
-    font-family: mothanna,DroidKufi,light, sans-serif;
+
+@font-face {
+    font-family: hacen-algeria;
+
+    src: url(./fonts/Hacen_Algeria.ttf);
+    font-display: fallback;
+}
+
+body.rtl label,body.rtl span ,body.rtl button,body.rtl a{
+    font-family:  mothanna,light,hacen-algeria, sans-serif;
 }
 
 [dir="rtl"] .light-font {

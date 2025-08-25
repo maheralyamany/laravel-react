@@ -174,4 +174,8 @@ Use tools like [ncu](https://www.npmjs.com/package/npm-check-updates) to check f
 - If Vite fails due to port conflicts, restart it using `pkill -f node`.
 - Run `ddev restart` if database issues persist.
 
+make:controller RoleController --resource --model='Role' 
 
+php artisan make:policy RolePolicy --model=Role
+
+php artisan make:service RoleService

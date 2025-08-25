@@ -1,6 +1,6 @@
 import forms from '@tailwindcss/forms';
 import animate from 'tailwindcss-animate';
-import rtl from 'tailwindcss-rtl';
+import rtl from '@tailwindcss-rtl';
 
 /** @type {import('tailwindcss').Config} */
 export default {

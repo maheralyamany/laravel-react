@@ -10,7 +10,11 @@ export function useTranslations() {
 	const t = (key: string): string => {
 		const keys = key.split('.');
 		return keys.reduce((acc: TranslationType | string, current) => {
+
+
+
 			if (typeof acc === 'string') return acc;
+
 			return acc[current] ?? key;
 		}, translations) as string;
 	};

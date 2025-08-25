@@ -5,7 +5,7 @@ declare(strict_types=1);
 ?>
 <!DOCTYPE html>
 <html lang="{{ $language= getCurrentLocale() }}" dir="{{ $pageDir=getPageDirection($language)}}" @class(['dark' => ($appearance ?? 'system') == 'dark'])>
-   
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">

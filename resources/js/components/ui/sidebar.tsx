@@ -40,7 +40,7 @@ type SidebarContext = {
   toggleSidebar: () => void
 }
 
- 
+
 const SidebarContext = React.createContext<SidebarContext | null>(null)
 
 function useSidebar() {
