@@ -20,5 +20,6 @@ Route::middleware('auth')->group(function (): void {
 
     Route::get('settings/appearance', fn () => Inertia::render('settings/appearance'))->name('appearance');
      Route::get('settings/language', fn () => Inertia::render('settings/language'))->name('language');
+     Route::get('icons/index', fn () => Inertia::render('icons/index'))->name('icons.index');
      Route::post('settings/language', [SettingsController::class, 'changeLang'])->name('language.update');
 });

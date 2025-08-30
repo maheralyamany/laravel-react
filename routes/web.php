@@ -3,11 +3,12 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRestoreController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => redirect()->to(route('dashboard'))->withHeaders([
+Route::get('/', fn() => redirect()->to(route('dashboard'))->withHeaders([
     'Cache-Control' => 'no-cache, no-store, must-revalidate',
     'Pragma' => 'no-cache',
     'Expires' => '0',
@@ -17,6 +18,9 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('users', UserController::class);
+    Route::resource('provinces', ProvinceController::class);
+
+    Route::put('/provinces/{province}/restore', [ProvinceController::class, 'restore'])->name('provinces.restore')->withTrashed();
 
     Route::put('/users/{user}/restore', UserRestoreController::class)->name('users.restore')->withTrashed();
 });

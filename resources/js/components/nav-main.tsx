@@ -95,7 +95,7 @@ export function NavMain({ items }: NavMainProps) {
 						<SidebarGroup>
 							<SidebarGroupLabel asChild>
 								<CollapsibleTrigger className="text-sidebar-foreground/100 hover:text-sidebar-foreground/70 flex items-center px-2 hover:cursor-pointer">
-									{item.icon && <item.icon className="mr-2 h-4 w-4" />}
+									{item.icon && <item.icon className="mx-2 h-4 w-4" />}
 									{state !== 'collapsed' && (
 										<>
 											{item.title}
@@ -109,7 +109,7 @@ export function NavMain({ items }: NavMainProps) {
 									{item.children.map((child, childIndex) => (
 										<SidebarMenuItem key={childIndex}>
 											<SidebarMenuButton
-												size="lg"
+												size="default"
 												asChild
 												onClick={() => handleChildClick(index)}
 											>

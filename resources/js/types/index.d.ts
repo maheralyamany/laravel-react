@@ -3,7 +3,7 @@ import type { Config } from 'ziggy-js';
 import { MouseEventHandler } from 'react';
 
 type PermissionAction = 'view' | 'create' | 'update' | 'delete';
-type PermissionResource = 'users' /* | 'posts' | 'comments' etc */;
+type PermissionResource = 'users' |'provinces'/* | 'posts' | 'comments' etc */;
 type Permission = `${PermissionAction}_${PermissionResource}`;
 
 export interface User {
@@ -17,6 +17,18 @@ export interface User {
     email_verified_at: string | null;
     avatar: string | null;
     can: Record<Permission, boolean>;
+}
+export interface Province {
+    id: number;
+    name_ar: string;
+    name_en: string;
+    local_name: string;
+    is_capital: boolean;
+    status: boolean;
+    has_mov: boolean;
+    created_at: string | null;
+    updated_at: string | null;
+    deleted_at: string | null;
 }
 
 export interface Auth {

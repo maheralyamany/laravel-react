@@ -59,6 +59,8 @@ class HandleInertiaRequests extends Middleware
                 'pagination' => trans('pagination', locale: $appLocale),
                 'passwords' => trans('passwords', locale: $appLocale),
                 'users' => trans('users', locale: $appLocale),
+                'provinces' => trans('provinces', locale: $appLocale),
+                'base' => trans('base', locale: $appLocale),
                 'roles' => trans('roles', locale: $appLocale),
                 'validation' => trans('validation', locale: $appLocale),
                 'common' => trans('common', locale: $appLocale),

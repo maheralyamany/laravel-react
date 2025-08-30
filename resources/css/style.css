@@ -1,0 +1,29 @@
+@import url(./fonts.css);
+@import url(./table.css);
+
+:root {
+    --vp-c-bg: #ffffff;
+    --vp-c-bg-alt: #f6f6f7;
+    --vp-c-bg-elv: #ffffff;
+    --vp-c-bg-soft: #f6f6f7;
+
+    --vp-c-text-1: #3c3c43;
+    --vp-c-text-2: #67676c;
+    --vp-c-text-3: #929295;
+}
+
+.icon-button {
+
+    border: 1px solid transparent;
+    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: color .25s, border-color .25s, background-color .25s;
+    border-radius: 6px;
+    background-color: var(--vp-c-bg-alt);
+
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+    color: var(--vp-c-text-1);
+}

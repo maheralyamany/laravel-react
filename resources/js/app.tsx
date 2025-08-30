@@ -1,6 +1,6 @@
 import '../scss/app.scss';
-import '../css/fonts.css';
-import '../css/table.css';
+
+import '../css/style.css';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';

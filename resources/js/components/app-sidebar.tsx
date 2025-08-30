@@ -13,7 +13,7 @@ import {
 import { getPageDirection } from '@/hooks/use-language';
 import { type NavItem } from '@/types';
 import { usePage } from '@inertiajs/react';
-import { LayoutGrid, Users, UserPlus } from 'lucide-react';
+import { LayoutGrid, Users, LucideStar } from 'lucide-react';
 import AppLogo from './app-logo';
 import { Auth } from '@/types';
 import { useTranslations } from '@/hooks/use-translations';
@@ -28,32 +28,36 @@ export function AppSidebar() {
             title: t('dashboard.title'),
             href: '/dashboard',
             icon: LayoutGrid,
+        }, {
+            title: t('base.initialization'),
+            icon: LucideStar,
+            children: [
+                {
+                    title: t('base.icons'),
+                    href: route('icons.index'),
+                    icon: LucideStar,
+                },
+                auth.user?.can.view_users ? {
+                    title: t('users.index_page_title'),
+                    href: route('users.index'),
+                    icon: Users,
+                } : null,
+                auth.user?.can.view_provinces
+                    ? {
+                        title: t('provinces.title'),
+                        href: route('provinces.index'),
+                        icon: LucideStar,
+                    }
+                    : null,
+            ].filter(Boolean) as NavItem[],
         },
-        auth.user?.can.view_users
-            ? {
-                title: t('users.title'),
-                children: [
-                    {
-                        title: t('users.index_page_title'),
-                        href: route('users.index'),
-                        icon: Users,
-                    },
-                    auth.user?.can.create_users
-                        ? {
-                            title: t('users.actions.new'),
-                            href: route('users.create'),
-                            icon: UserPlus,
-                        }
-                        : null,
-                ].filter(Boolean) as NavItem[],
-            }
-            : null,
+
     ].filter(Boolean) as NavItem[];
 
     const footerNavItems: NavItem[] = [];
-    const side= pageDir==='rtl'?'right':'left';
+    const side = pageDir === 'rtl' ? 'right' : 'left';
     return (
-        <Sidebar collapsible="icon"  side={side} variant="inset">
+        <Sidebar collapsible="icon" side={side} variant="inset">
             <SidebarHeader className='bg-background'>
                 <SidebarMenu>
                     <SidebarMenuItem>

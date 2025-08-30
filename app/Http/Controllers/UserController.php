@@ -56,10 +56,10 @@ class UserController extends Controller {
     /**
      * Store a newly created user.
      */
-    public function store(UserStoreRequest $userStoreRequest): RedirectResponse {
+    public function store(UserStoreRequest $storeRequest): RedirectResponse {
         $this->authorize('create', User::class);
 
-        $this->userService->create($userStoreRequest->validated());
+        $this->userService->create($storeRequest->validated());
 
         return redirect()
             ->route('users.index')
@@ -93,10 +93,10 @@ class UserController extends Controller {
     /**
      * Update the specified user.
      */
-    public function update(UserUpdateRequest $userUpdateRequest, User $user): RedirectResponse {
+    public function update(UserUpdateRequest $updateRequest, User $user): RedirectResponse {
         $this->authorize('update', $user);
 
-        $this->userService->update($user, $userUpdateRequest->validated());
+        $this->userService->update($user, $updateRequest->validated());
 
         return redirect()
             ->route('users.index')

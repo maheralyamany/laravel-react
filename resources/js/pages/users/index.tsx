@@ -175,7 +175,7 @@ export default function UsersIndex({ users, filters }: UsersIndexProps) {
 														onSelect={() => setUserToDelete(user)}
 													>
 														<Trash className="mr-2 h-4 w-4" />
-														{t('users.actions.delete')}
+														<span>{t('users.actions.delete')}</span>
 													</DropdownMenuItem>
 												)}
 												{canUpdateUser(user) && user.deleted_at && (
@@ -183,7 +183,7 @@ export default function UsersIndex({ users, filters }: UsersIndexProps) {
 														onSelect={() => setUserToRestore(user)}
 													>
 														<ArrowUpCircle className="mr-2 h-4 w-4" />
-														{t('users.actions.restore')}
+														<span>{t('users.actions.restore')}</span>
 													</DropdownMenuItem>
 												)}
 											</DropdownMenuContent>

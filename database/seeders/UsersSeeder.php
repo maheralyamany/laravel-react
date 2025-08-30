@@ -3,15 +3,18 @@
 namespace Database\Seeders;
 
 use App\Enums\RolesEnum;
+use App\Models\Province;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class UsersSeeder extends Seeder {
+class UsersSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      */
-    public function run(): void {
+    public function run(): void
+    {
         $password = config('app.default_user_password_for_seeder');
 
         // Create or update the admin user
@@ -43,5 +46,6 @@ class UsersSeeder extends Seeder {
             ]
         );
         $registeredUser->assignRole(RolesEnum::REGISTERED_USER->value);
+        Province::createDefaults();
     }
 }

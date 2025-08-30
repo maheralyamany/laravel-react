@@ -21,9 +21,10 @@
     font-display: fallback;
 }
 
-body.rtl label,body.rtl span ,body.rtl button,body.rtl a{
+body.rtl label:not(.en),body.rtl span:not(.en) ,body.rtl button:not(.en),body.rtl a:not(.en),body.rtl table thead th:not(.en){
     font-family:  mothanna,light,hacen-algeria, sans-serif;
 }
+
 
 [dir="rtl"] .light-font {
     font-family: light, sans-serif !important;

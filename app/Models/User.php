@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Enums\PermissionsEnum;
 use App\Enums\RolesEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -28,7 +29,8 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read string|null $role
  * @property-read Collection|Role[] $roles
  */
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use HasApiTokens;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -65,7 +67,8 @@ class User extends Authenticatable {
      *
      * @return array<string, string>
      */
-    protected function casts(): array {
+    protected function casts(): array
+    {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
@@ -81,13 +84,26 @@ class User extends Authenticatable {
         'roles',
     ];
 
-    public function getRoleAttribute(): ?string {
+    public function getRoleAttribute(): ?string
+    {
         return $this->roles->first()?->name;
     }
 
-    public function isAdmin(): bool {
-       // Administrator
-      return $this->hasRole(RolesEnum::ADMINISTRATOR->value);
+    public function isAdmin(): bool
+    {
+        // Administrator
+        return $this->hasRole(RolesEnum::ADMINISTRATOR->value);
     }
+    /**
+     * Determine if the model has (one of) the given role(s).
+     *
+     * @param  PermissionsEnum  $permission
+     */
+    public function hasValidPermission($permission): bool
+    {
+        if ($this->isAdmin())
+            return true;
+        return $this->can($permission->value);
 
+    }
 }

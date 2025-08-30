@@ -44,6 +44,7 @@
         "files": [
 
 			"app/Helpers/language_helper.php",
+			"app/Helpers/datetime_helper.php",
 			"app/Helpers/helpers.php"
 
 		]
