@@ -28,27 +28,20 @@ const iconsArray: LazyIcon[] = Object.entries(allIconsLazy).map(([path, loaderFn
     };
 });
 // --- Highlight matched search term
-function highlightMatch(name: string, search: string) {
-    if (!search) return name;
-    const regex = new RegExp(`(${search})`, "gi");
-    return name.split(regex).map((part, i) =>
-        regex.test(part) ? <span key={i} className="bg-yellow-200">{part}</span> : part
-    );
-}
 // --- Single Icon Item
-function IconItem({ icon, search, index }: { icon: LazyIcon; search: string, index: number }) {
+function IconItem({ icon }: { icon: LazyIcon; search: string, index: number }) {
     const [src, setSrc] = useState<string | null>(null);
     const [copied, setCopied] = useState(false);
     useEffect(() => {
         let isMounted = true;
-        icon.loader().then(res => {
+        void icon.loader().then(res => {
             if (isMounted) setSrc(res);
         });
         return () => { isMounted = false; };
     }, [icon]);
     const handleClick = () => {
         if (icon.name) {
-            navigator.clipboard.writeText(icon.name);
+            void navigator.clipboard.writeText(icon.name);
 
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
@@ -66,7 +59,6 @@ function IconItem({ icon, search, index }: { icon: LazyIcon; search: string, ind
                             onClick={handleClick}
                         >
                             {src ? (
-
                                 <img src={src} alt={icon.name} className="w-9 h-9 rounded-lg" />
                             ) : (
                                 <div className="w-12 h-12 bg-gray-200 rounded-lg animate-pulse" />
